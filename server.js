@@ -16,6 +16,9 @@ connectDB();
 
 const app = express();
 
+// Body Parser
+app.use(express.json());
+
 // app.use(logger);
 // Dev loging middleware
 if (process.env.NODE_ENV === 'development') {
