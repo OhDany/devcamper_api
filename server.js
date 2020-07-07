@@ -3,18 +3,18 @@ const dotenv = require('dotenv');
 // const logger = require('./middleware/logger');
 const morgan = require('morgan');
 const colors = require('colors');
-const erroHandler = require('./middleware/error');
+const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
 // Load env vars
 dotenv.config({ path: './config/config.env'});
 
-// Routes files
-const bootcamps = require('./routes/bootcams');
-const errorHandler = require('./middleware/error');
-
 // Connect to database
 connectDB();
+
+// Routes files
+const bootcamps = require('./routes/bootcams');
+const courses = require('./routes/courses');
 
 const app = express();
 
@@ -29,6 +29,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
+app.use('/api/v1/courses', courses);
 
 app.use(errorHandler);
 
